@@ -1,4 +1,3 @@
-#include "holberton.h"
 #include <stdarg.h>
 #include <unistd.h>
 
