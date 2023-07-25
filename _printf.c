@@ -13,6 +13,19 @@ int _putchar(char c)
 }
 
 /**
+ * printchar - Writes a character to stdout.
+ * @args: The character to be written.
+ * @format:f
+ * @count:c
+ */
+void printchar(va_list args, char format, int count)
+{
+	char c = va_arg(args, int);
+	_putchar(c);
+	format++;
+	count++;
+}
+/**
  * _printf - Print output according to a format.
  * @format: A character string with format specifiers.
  * Return: The number of characters printed (excluding the null byte).
@@ -42,10 +55,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'c')
 			{
-				char c = va_arg(args, int);
-				_putchar(c);
-				format++;
-				count++;
+				printchar(args, *format, count);
 			}
 			else if (*format == 's')
 			{
