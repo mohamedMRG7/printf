@@ -9,23 +9,9 @@
  */
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+	return write(1, &c, 1);
 }
 
-/**
- * printchar - Writes a character to stdout.
- * @args: The character to be written.
- * @format:f
- * @count:c
- */
-int printchar(va_list *args, const char *format,int *count)
-{
-	char c = va_arg(*args, int);
-	_putchar(c);
-	*count = *count + 1;
-	*format = *format + 1;
-	return (*count);
-}
 /**
  * _printf - Print output according to a format.
  * @format: A character string with format specifiers.
@@ -38,8 +24,10 @@ int _printf(const char *format, ...)
 	char current_char;
 
 	va_start(args, format);
+
 	if (format == NULL)
-		return (-1);
+		return -1;
+
 	while (*format)
 	{
 		current_char = *format;
@@ -47,7 +35,8 @@ int _printf(const char *format, ...)
 		{
 			format++;
 			if (*format == '\0')
-				return (-1);
+				return -1;
+
 			if (*format == '%')
 			{
 				_putchar('%');
@@ -56,7 +45,10 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'c')
 			{
-				printchar(&args, format, &count);
+				char c = va_arg(args, int);
+				_putchar(c);
+				format++;
+				count++;
 			}
 			else if (*format == 's')
 			{
@@ -84,6 +76,7 @@ int _printf(const char *format, ...)
 			count++;
 		}
 	}
+
 	va_end(args);
-	return (count);
+	return count;
 }
