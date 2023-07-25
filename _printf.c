@@ -50,19 +50,26 @@ int _printf(const char *format, ...)
 				format++;
 				count++;
 			}
-			else if (*format == 'd')
+			else if (*format == 'd' || *format == 'i')
 			{
-				char c = va_arg(args, double);
-				_putchar(c);
+				int num = va_arg(args, int);
+				int divisor = 1;
+				if (num < 0)
+				{
+					_putchar('-');
+					count++;
+					num = -num;
+				}
+				while (num / divisor > 9)
+					divisor *= 10;
+				while (divisor > 0)
+				{
+					_putchar((num / divisor) + '0');
+					count++;
+					num %= divisor;
+					divisor /= 10;
+				}
 				format++;
-				count++;
-			}
-			else if (*format == 'i')
-			{
-				char c = va_arg(args, int);
-				_putchar(c);
-				format++;
-				count++;
 			}
 			else if (*format == 's')
 			{
