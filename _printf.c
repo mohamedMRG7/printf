@@ -50,6 +50,20 @@ int _printf(const char *format, ...)
 				format++;
 				count++;
 			}
+			else if (*format == 'd')
+			{
+				char c = va_arg(args, double);
+				_putchar(c);
+				format++;
+				count++;
+			}
+			else if (*format == 'i')
+			{
+				char c = va_arg(args, int);
+				_putchar(c);
+				format++;
+				count++;
+			}
 			else if (*format == 's')
 			{
 				char *str = va_arg(args, char*);
