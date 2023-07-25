@@ -18,12 +18,13 @@ int _putchar(char c)
  * @format:f
  * @count:c
  */
-void printchar(va_list args, char format, int count)
+int printchar(va_list args,const char *format, int *count)
 {
 	char c = va_arg(args, int);
 	_putchar(c);
 	format++;
-	count++;
+	*count = *count + 1;
+	return (*count);
 }
 /**
  * _printf - Print output according to a format.
@@ -55,7 +56,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'c')
 			{
-				printchar(args, *format, count);
+				printchar(args, format, &count);
 			}
 			else if (*format == 's')
 			{
