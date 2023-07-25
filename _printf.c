@@ -9,7 +9,7 @@
  */
 int _putchar(char c)
 {
-	return write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 
 /**
@@ -24,10 +24,8 @@ int _printf(const char *format, ...)
 	char current_char;
 
 	va_start(args, format);
-
 	if (format == NULL)
-		return -1;
-
+		return (-1);
 	while (*format)
 	{
 		current_char = *format;
@@ -35,8 +33,7 @@ int _printf(const char *format, ...)
 		{
 			format++;
 			if (*format == '\0')
-				return -1;
-
+				return (-1);
 			if (*format == '%')
 			{
 				_putchar('%');
@@ -76,7 +73,6 @@ int _printf(const char *format, ...)
 			count++;
 		}
 	}
-
 	va_end(args);
-	return count;
+	return (count);
 }
