@@ -2,6 +2,6 @@
 
 int main(void)
 {
-	_printf("%c",'a');
+	_printf("%c%s\n",'a',"asd");
 	return (0);
 }
